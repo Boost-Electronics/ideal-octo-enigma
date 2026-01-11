@@ -13,6 +13,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.get('/', (req, res) => res.render('index'));
 app.get('/portable-charger', (req, res) => res.render('portable-charger'));
 app.get('/future-projects', (req, res) => res.render('future-projects'));
+app.get('/index.ejs', (req, res) => res.redirect('/'));
 
 // Export the app for Vercel
 module.exports = app;

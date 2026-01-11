@@ -5,15 +5,24 @@
     --card-bg: #1e293b;
     --section-bg: #334155;
     --navy-top: #00162d;
+    
+    /* Light Mode Variables for Sub-pages */
+    --light-bg: #1e293b;   /* Dark Slate (Slate 800) */
+    --light-text: #f8fafc; /* Very Light Gray text for readability */
+    --sub-text: #94a3b8;   /* Muted Slate text */
 }
 
 /* Base Styles & One-Page Constraint */
+*, *::before, *::after {
+    box-sizing: border-box; /* Prevents padding from causing horizontal scroll */
+}
+
 html, body {
     margin: 0;
     padding: 0;
     height: 100vh;
-    width: 100vw;
-    overflow: hidden; 
+    width: 100%;
+    overflow-x: hidden; /* Fixes left-right wiggle */
     font-family: 'Segoe UI', Tahoma, sans-serif;
     background-color: var(--bg);
     color: var(--text);
@@ -145,9 +154,11 @@ html, body {
 }
 
 .btn {
+    display: inline-block;
     padding: 12px 35px;
     border: 2px solid var(--accent);
-    color: white;
+    color:#ffffff; /* Explicitly white for dark background */
+    background: transparent;
     text-decoration: none;
     font-weight: bold;
     font-size: 0.9rem;
@@ -159,6 +170,7 @@ html, body {
 
 .btn:hover {
     background: var(--accent);
+    color: white;
     box-shadow: 0 0 15px rgba(0, 112, 243, 0.4);
 }
 
@@ -168,20 +180,87 @@ html, body {
     background-color: #475569;
 }
 
-/* --- SCROLL SNAP (SUBPAGES) --- */
+/* --- FIXED SCROLL SNAP (SUBPAGES) --- */
 .scroll-wrapper {
     height: 100vh;
+    width: 100%;
     overflow-y: scroll;
+    overflow-x: hidden; /* Prevents choppy side-scroll */
     scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+    background-color: var(--light-bg);
+    /* Hide scrollbar for Chrome/Safari */
+    scrollbar-width: none; 
+}
+
+.scroll-wrapper::-webkit-scrollbar {
+    display: none; /* Hides scrollbar completely for ultra-smooth look */
 }
 
 .project-step {
     height: 100vh;
-    width: 100%;
+    width: 100vw;
     scroll-snap-align: start;
+    scroll-snap-stop: always; /* Ensures the scroll "locks" into place */
     display: flex;
-    justify-content: center;
-    align-items: center;
+    position: relative;
+    padding: 0;
+    background-color: var(--light-bg);
+}
+
+/* --- TOP LEFT CONTENT BOX --- */
+.content-box {
+    position: absolute;
+    top: 50px;
+    left: 50px;
     text-align: center;
+    border: 2px solid var(--accent);
     padding: 40px;
+    border-radius: 12px;
+    max-width: 500px;
+    width: 90%;
+    /* Lighter than the background to make it pop */
+    background: #334155; 
+    box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+}
+
+.content-box h1 {
+    font-size: 2.2rem;
+    margin: 0 0 15px 0;
+    color: var(--light-text);
+}
+
+.content-box p {
+    color: var(--sub-text);
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 0;
+}
+
+/* --- FOOTER & CONTACT (PAGE 4) --- */
+.contact-footer {
+    margin-top: 30px;
+    padding-top: 25px;
+    border-top: 2px solid var(--accent);
+    width: 100%;
+    text-align: center;
+}
+
+.contact-info {
+    font-size: 1rem;
+    color: var(--light-text);
+    margin-bottom: 25px;
+    line-height: 1.5;
+}
+/* Ensures boxes don't cause horizontal scroll and smooths out the snap */
+.scroll-wrapper {
+    scrollbar-width: none; /* Hides scrollbar for Firefox */
+}
+
+.scroll-wrapper::-webkit-scrollbar {
+    display: none; /* Hides scrollbar for Chrome/Safari */
+}
+
+.project-step {
+    scroll-snap-stop: always; /* Forces the browser to stop at each page */
 }
