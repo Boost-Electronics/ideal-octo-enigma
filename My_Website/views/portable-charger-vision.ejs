@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <title>The Vision | Portable Charger</title>
+    <style>
+        /* Ensuring the page fits the scroll-snap flow from your main site */
+        body, html {
+            margin: 0;
+            padding: 0;
+            background-color: #1e293b; /* Matching your --light-bg */
+            color: #f8fafc;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+        }
+
+        .vision-container {
+            display: flex;
+            height: 100vh;
+            width: 100%;
+            align-items: center;
+        }
+
+        /* Left Half: Text Content */
+        .vision-text {
+            flex: 1;
+            padding: 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background-color: #1e293b;
+        }
+
+        .vision-text h1 {
+            font-size: 2.5rem;
+            color: #0070f3; /* Matching your --accent */
+            margin-bottom: 30px;
+            border-bottom: 2px solid #708090;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .goal-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .goal-item {
+            margin-bottom: 25px;
+            position: relative;
+            padding-left: 30px;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .goal-item::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #0070f3;
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        .sub-goal {
+            display: block;
+            margin-top: 8px;
+            color: #94a3b8; /* Muted text for details */
+            font-size: 1rem;
+        }
+
+        /* Right Half: Schematic Image */
+        .vision-image {
+            flex: 1;
+            height: 100vh;
+            background-color: #334155; /* Slightly lighter to make image pop */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-left: 2px solid #708090;
+            overflow: hidden;
+        }
+
+        .vision-image img {
+            max-width: 90%;
+            max-height: 80%;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transition: transform 0.3s ease;
+        }
+
+        .vision-image img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Back Button Floating */
+        .back-nav {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 100;
+        }
+
+        @media (max-width: 900px) {
+            .vision-container {
+                flex-direction: column;
+            }
+            .vision-image {
+                height: 50vh;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="back-nav">
+        <a href="/portable-charger" class="btn">← Back</a>
+    </nav>
+
+    <main class="vision-container">
+        <section class="vision-text">
+            <h1>Project Goals</h1>
+            <div class="goal-list">
+                <div class="goal-item">
+                    <strong>Design & Prototype:</strong>
+                    <span class="sub-goal">Create a battery holder PCB on AutoDesk with a Schematic and 3D printed model to test functionality.</span>
+                </div>
+                <div class="goal-item">
+                    <strong>Component Sourcing:</strong>
+                    <span class="sub-goal">Integrate breakout modules including the TP4056 charging module and a 3V-5V Buck Boost Converter.</span>
+                </div>
+                <div class="goal-item">
+                    <strong>Manufacturing:</strong>
+                    <span class="sub-goal">Order custom PCBs through JLCPCB and perform precision soldering of all electronics.</span>
+                </div>
+                <div class="goal-item">
+                    <strong>Final Assembly:</strong>
+                    <span class="sub-goal">Design custom housing in Autodesk and 3D print the final enclosure for the electronics.</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="vision-image">
+            <img src="/images/port.png" alt="Project Schematic Diagram">
+        </section>
+    </main>
+
+</body>
+</html>
