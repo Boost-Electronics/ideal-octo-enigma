@@ -305,3 +305,37 @@ html, body {
     transform: scale(1.02); 
     z-index: 10;
 }
+/* Container for the vertical stack */
+.nested-vertical-split {
+    flex: 1;
+    display: flex;
+    flex-direction: column; /* This stacks children vertically */
+    height: 100vh;
+}
+
+/* Ensure the buttons inside the vertical stack share the height */
+.nested-vertical-split .button-img {
+    flex: 1; 
+    height: 50%; /* Each takes half the vertical space */
+    width: 100%;
+}
+
+/* Horizontal Divider between the two vertical images */
+.inner-line {
+    width: 100%;
+    height: 1px;
+    background-color: #1e293b;
+    border: none;
+    z-index: 5;
+}
+
+/* Responsive fix: On mobile, stack everything in a single column */
+@media (max-width: 768px) {
+    .nested-vertical-split {
+        height: auto; /* Allow height to expand on mobile */
+    }
+    .nested-vertical-split .button-img {
+        height: 40vh; /* Give each image a distinct height on mobile */
+    }
+}
+/* Keep your existing .button-img styles as they are */
