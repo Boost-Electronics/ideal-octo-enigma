@@ -21,8 +21,8 @@ app.get('/views/portable-charger-vision.ejs', (req, res) => {
     res.render('portable-charger-vision');
 });
 
-app.get('/views/portable-charger-PCB.ejs', (req, res) => {
-    res.render('portable-charger-PCB');
+app.get('/views/portable-charger-pcb.ejs', (req, res) => {
+    res.render('portable-charger-pcb');
 });
 
 app.get('/portable-charger/cad', (req, res) => {
