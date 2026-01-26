@@ -77,22 +77,64 @@
             .image-split { flex-direction: column; gap: 20px; }
             .vertical-line { display: none; }
         }
+        /* Force the section to be a vertical stack */
+    .challenges-section {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start; /* Start from top to allow room for images below */
+        align-items: center;
+        padding-top: 100px !important; /* Push down from the 12px border */
+        text-align: center;
+    }
+
+    /* Keep the text block contained and centered */
+    .centered-content-wrapper {
+        max-width: 800px;
+        width: 100%;
+        margin-bottom: 50px; /* Space between text and images */
+        z-index: 2;
+    }
+
+    .challenges-description {
+        margin: 0 auto;
+        max-width: 600px;
+        line-height: 1.6;
+    }
+
+    /* Ensure images don't float up and overlap text */
+    .image-display-container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap; /* Helps on smaller Vercel viewports */
+    }
+
+    /* Force the title to stay centered */
+    .centered-title {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
     </style>
-    
+
 </head>
 <body>
    
-<section class="project-step" style="position: relative; height: 100vh;">
+<section class="project-step challenges-section">
     <a href="javascript:history.back()" class="btn-back-home">
         <span class="arrow">←</span> Back
     </a>
 
-    <div class="text-content-wrapper">
+    <div class="centered-content-wrapper">
         <h1 class="centered-title">PCB Design</h1>
-        <p class="centered-description">
+        <p class="challenges-description">
             To create the portable charger, I decided to integrate a TP4056 breakout board and 3v-5v Buck Boost Converter using a custom-designed Battery holder PCB to ensure protection against overcharging and a smooth lithium ion charging experience. Below are renders of the AutoDesk PCB models and physical PCB models.
         </p>
     </div>
+
+    <div class="challenges-image-grid">
+        </div>
 </section>
 
     <div class="divider-container"><hr class="line"></div>
@@ -104,12 +146,18 @@
 
     <div class="divider-container"><hr class="line"></div>
 
-    <section>
-        <div class="text-content">
-            <h1>Challenges Faced</h1>
-            <p>During the creation of the Battery Holder PCB I ran into several problems including IC design in Eagle electronics and manufacturing issues with JLCPCB.</p>
+    <section class="project-step challenges-section">
+    <div class="centered-content-wrapper">
+        <h1 class="centered-title">Challenges Faced</h1>
+        <p class="challenges-description">
+            During the creation of the Battery Holder PCB I ran into several problems 
+            including IC design in Eagle electronics and manufacturing issues with JLCPCB.
+        </p>
+    </div>
+
+    <div class="image-display-container">
         </div>
-    </section>
+</section>
 
     <section class="image-split">
     <div class="nested-vertical-split">
@@ -139,24 +187,26 @@
     <div class="horizontal-line"></div>
 </div>
 
-<section class="lessons-learned">
-    <div class="text-content">
-        <h1>Lessons Learned</h1>
-        <div class="lessons-flex-container">
-            <div class="lesson-card left-wide">
+<section class="project-step challenges-section">
+    <div class="centered-content-wrapper">
+        <div class="centered-content-wrapper">
+            <h1 class="centered-title">Lessons Learned</h1>
+        </div>
+
+    <div class="lessons-flex-container">
+        <div class="lesson-card left-wide">
                 <h3>Design Iteration</h3>
                 <p>Learned that digital simulations (Eagle/Fusion) rarely account for physical manufacturing tolerances. Iterating early saved weeks of debugging.</p>
-            </div>
+        </div>
             
-            <div class="lesson-card right-wide">
+    <div class="lesson-card right-wide">
                 <h3>Supply Chain</h3>
                 <p>Navigating JLCPCB's manufacturing capabilities taught me to design for "DFM" (Design for Manufacturability) rather than just theoretical perfection.</p>
-            </div>
+        </div>
 
-            <div class="lesson-card full-width">
+    <div class="lesson-card full-width">
                 <h3>Thermal Management</h3>
                 <p>Discovered the importance of copper pours to dissipate heat from the Buck-Boost converter under high iPhone charging loads.</p>
-            </div>
         </div>
     </div>
 </section>
