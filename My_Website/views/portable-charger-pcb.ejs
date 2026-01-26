@@ -6,6 +6,79 @@
     <title>Portable Charger PCB Project</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/style.css">
+
+    <style>
+        /* Standalone overrides to fix Vercel rendering for this page specifically */
+        :root {
+            --bg: #0b1221;
+            --accent-blue: #3b82f6;
+            --slate-grey: #161e2d;
+            --sub-text: #94a3b8;
+            --light-text: #f1f5f9;
+        }
+
+        body {
+            background-color: var(--bg) !important;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Re-asserting the fixed border in case the global link fails */
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            border: 12px solid #1e293b; 
+            pointer-events: none; 
+            z-index: 9999;
+        }
+
+        /* Ensuring the scroll wrapper works with Vercel's flex handling */
+        .scroll-wrapper {
+            height: 100vh;
+            width: 100%;
+            overflow-y: scroll;
+            scroll-snap-type: y mandatory;
+            scrollbar-width: none; 
+            -ms-overflow-style: none;
+        }
+        .scroll-wrapper::-webkit-scrollbar { display: none; }
+
+        .project-step {
+            min-height: 100vh;
+            width: 100%;
+            scroll-snap-align: start;
+            scroll-snap-stop: always;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 80px 60px;
+            box-sizing: border-box;
+            background-color: var(--bg);
+        }
+
+        /* Fix for potential heading overlap */
+        .centered-title {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            color: var(--light-text);
+            margin-bottom: 30px;
+            text-align: center;
+            border-bottom: 2px solid #1e293b;
+            padding-bottom: 15px;
+        }
+
+        /* Ensure images and splits don't break on mobile */
+        @media (max-width: 768px) {
+            .project-step { padding: 40px 20px; }
+            .image-split { flex-direction: column; gap: 20px; }
+            .vertical-line { display: none; }
+        }
+    </style>
+    
 </head>
 <body>
    
