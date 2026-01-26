@@ -5,128 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portable Charger PCB Project</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-    <style>
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Inter', sans-serif;
-            background-color: #0b1221; 
-            color: #94a3b8;
-            -webkit-font-smoothing: antialiased;
-            overflow-x: hidden;
-        }
-
-        /* Fixed Border Frame */
-        body::after {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            border: 12px solid #1e293b; 
-            pointer-events: none; 
-            z-index: 9999;
-        }
-
-        /* Section Dividers - Floating Lines */
-        .divider-container {
-            display: flex;
-            justify-content: center;
-            background-color: #0b1221;
-        }
-
-        .line {
-            width: 80%; /* Does not touch the borders */
-            height: 1px;
-            background-color: #1e293b;
-            border: none;
-        }
-
-        section {
-            min-height: 100vh;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            box-sizing: border-box;
-            padding: 80px 60px;
-        }
-
-        .text-content {
-            max-width: 750px;
-            line-height: 1.8;
-        }
-
-        /* Underlined Titles */
-        h1 {
-            font-size: 2.8rem;
-            font-weight: 600;
-            letter-spacing: -0.02em;
-            margin-bottom: 24px;
-            color: #f1f5f9; 
-            display: inline-block;
-            border-bottom: 2px solid #1e293b; /* Professional underline */
-            padding-bottom: 8px;
-        }
-
-        p {
-            font-size: 1.15rem;
-            font-weight: 300;
-            letter-spacing: 0.01em;
-            margin-top: 20px;
-        }
-
-        .image-split {
-            display: flex;
-            padding: 0;
-            overflow: hidden;
-            background-color: #0b1221; 
-        }
-
-        .button-img {
-            flex: 1;
-            height: 100vh;
-            border: none;
-            outline: none;
-            cursor: pointer;
-            /* RESIZE BOXES TO FIT IMAGES: Ensures full visibility */
-            background-size: contain; 
-            background-position: center;
-            background-repeat: no-repeat;
-            background-color: #0b1221;
-            padding: 40px; /* Inset from the edge */
-            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease;
-        }
-
-        .button-img:hover {
-            filter: brightness(1.1) contrast(1.05);
-            transform: scale(1.03);
-            z-index: 10;
-        }
-
-        @media (max-width: 768px) {
-            body::after { border-width: 8px; }
-            section { padding: 60px 30px; }
-            h1 { font-size: 2rem; }
-            .image-split { flex-direction: column; }
-            .button-img { height: 50vh; }
-        }
-    </style>
+    <link rel="stylesheet" href="/style.css">
 </head>
 <body>
+   
+<section class="project-step" style="position: relative; height: 100vh;">
+    <a href="javascript:history.back()" class="btn-back-home">
+        <span class="arrow">←</span> Back
+    </a>
 
-    <section>
-        <div class="text-content">
-            <h1>PCB Design</h1>
-            <p>To create the portable charger, I decided to integrate a TP4056 breakout board and 3v-5v Buck Boost Converter using a custom-designed Battery holder PCB to ensure protection against overcharging and a smooth lithium ion charging experience. Below are renders of the AutoDesk PCB models and physical PCB models.</p>
-        </div>
-    </section>
+    <div class="text-content-wrapper">
+        <h1 class="centered-title">PCB Design</h1>
+        <p class="centered-description">
+            To create the portable charger, I decided to integrate a TP4056 breakout board and 3v-5v Buck Boost Converter using a custom-designed Battery holder PCB to ensure protection against overcharging and a smooth lithium ion charging experience. Below are renders of the AutoDesk PCB models and physical PCB models.
+        </p>
+    </div>
+</section>
 
     <div class="divider-container"><hr class="line"></div>
 
@@ -144,17 +38,54 @@
         </div>
     </section>
 
-    <div class="divider-container"><hr class="line"></div>
-
     <section class="image-split">
     <div class="nested-vertical-split">
-        <button class="button-img" style="background-image: url('/images/JLC-issue.png'); background-size: 180%;"></button>
-
-        <hr class="inner-line"> <button class="button-img" style="background-image: url('/images/failed-ic.png'); background-size: cover;"></button>
+        <button class="button-img" style="background-image: url('/images/JLC-Issue.png');">
+            <div class="img-overlay">
+                <span>JLC Manufacturing Issue: Component Sizing Error and Hole Misplacement</span>
+            </div>
+        </button>
+        
+        <hr class="inner-line">
+        
+        <button class="button-img" style="background-image: url('/images/failed-ic.png');">
+            <div class="img-overlay">
+                <span>Failed IC Design: Incorrect Pinout and Symbol</span>
+            </div>
+        </button>
     </div>
+    </div>
+    <div class="vertical-line"></div>
+    <button class="button-img" style="background-image: url('/images/failed-board.png');">
+        <div class="img-overlay">
+            <span>3D CAD Prototype: Incorrectly Assembled 3D Model of Portable Charger</span>
+        </div>
+    </button>
+</section>
+<div class="divider-wrap">
+    <div class="horizontal-line"></div>
+</div>
 
-    <button class="button-img" style="background-image: url('/images/physical-pcb.jpeg'); background-size: contain;"></button>
-    </section>
+<section class="lessons-learned">
+    <div class="text-content">
+        <h1>Lessons Learned</h1>
+        <div class="lessons-flex-container">
+            <div class="lesson-card left-wide">
+                <h3>Design Iteration</h3>
+                <p>Learned that digital simulations (Eagle/Fusion) rarely account for physical manufacturing tolerances. Iterating early saved weeks of debugging.</p>
+            </div>
+            
+            <div class="lesson-card right-wide">
+                <h3>Supply Chain</h3>
+                <p>Navigating JLCPCB's manufacturing capabilities taught me to design for "DFM" (Design for Manufacturability) rather than just theoretical perfection.</p>
+            </div>
 
+            <div class="lesson-card full-width">
+                <h3>Thermal Management</h3>
+                <p>Discovered the importance of copper pours to dissipate heat from the Buck-Boost converter under high iPhone charging loads.</p>
+            </div>
+        </div>
+    </div>
+</section>
 </body>
 </html>

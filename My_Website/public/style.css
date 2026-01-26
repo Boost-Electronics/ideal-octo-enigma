@@ -1,33 +1,54 @@
+/* ==========================================================================
+   1. CORE VARIABLES & GLOBAL RESET
+   ========================================================================== */
 :root {
     --bg: #000c18;
     --text: #ffffff;
     --accent: #0070f3;
+    --accent-blue: #3b82f6;
     --card-bg: #1e293b;
     --section-bg: #334155;
     --navy-top: #00162d;
     
-    /* Light Mode Variables for Sub-pages */
-    --light-bg: #1e293b;   /* Dark Slate (Slate 800) */
-    --light-text: #f8fafc; /* Very Light Gray text for readability */
-    --sub-text: #94a3b8;   /* Muted Slate text */
+    /* Sub-page Specific */
+    --slate-grey: #161e2d;
+    --light-bg: #1e293b;
+    --light-text: #f8fafc;
+    --sub-text: #94a3b8;
 }
 
-/* Base Styles & One-Page Constraint */
 *, *::before, *::after {
-    box-sizing: border-box; /* Prevents padding from causing horizontal scroll */
+    box-sizing: border-box;
 }
 
-html, body {
+html {
+    scroll-behavior: smooth;
+}
+
+body {
     margin: 0;
     padding: 0;
-    height: 100vh;
     width: 100%;
-    overflow-x: hidden; /* Fixes left-right wiggle */
-    font-family: 'Segoe UI', Tahoma, sans-serif;
+    font-family: 'Inter', 'Segoe UI', Tahoma, sans-serif;
     background-color: var(--bg);
     color: var(--text);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
 }
 
+/* Fixed Border Frame - Persists on all pages */
+body::after {
+    content: "";
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    border: 12px solid #1e293b; 
+    pointer-events: none; 
+    z-index: 9999;
+}
+
+/* ==========================================================================
+   2. HOME PAGE (Index.ejs) LAYOUT
+   ========================================================================== */
 .viewport-wrapper {
     height: 100vh;
     display: flex;
@@ -35,7 +56,6 @@ html, body {
     background: linear-gradient(to bottom, var(--navy-top) 0%, var(--bg) 50%, var(--section-bg) 100%);
 }
 
-/* --- TOP SECTION (IDENTITY) --- */
 .section-intro {
     height: 45vh;
     display: flex;
@@ -66,7 +86,7 @@ html, body {
     line-height: 1.6;
 }
 
-/* --- MIDDLE SECTION (DIVIDER) --- */
+/* Engineering Projects Divider */
 .projects-header-wide {
     height: 10vh;
     display: flex;
@@ -83,7 +103,6 @@ html, body {
     text-transform: uppercase;
     color: var(--accent);
     margin: 0;
-    white-space: nowrap;
 }
 
 .line-long {
@@ -94,7 +113,6 @@ html, body {
     opacity: 0.4;
 }
 
-/* --- BOTTOM SECTION (PROJECTS) --- */
 .section-projects-wide {
     height: 45vh;
     display: flex;
@@ -112,6 +130,8 @@ html, body {
 }
 
 .card-wide {
+    opacity: 0;
+    transform: translateY(30px);
     background: var(--card-bg);
     border: 1px solid #475569;
     padding: 60px;
@@ -125,18 +145,6 @@ html, body {
     justify-content: center;
 }
 
-.card-wide h2 {
-    font-size: 2.2rem;
-    margin: 0 0 15px 0;
-}
-
-.card-wide p {
-    color: #94a3b8;
-    font-size: 1.1rem;
-    max-width: 85%;
-    margin: 0;
-}
-
 .card-wide:hover {
     border-color: var(--accent);
     transform: translateY(-10px);
@@ -144,198 +152,213 @@ html, body {
     box-shadow: 0 20px 50px rgba(0,0,0,0.5);
 }
 
-/* --- BUTTONS & DIVIDERS --- */
-.hero-btns {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 30px;
-    margin: 15px 0;
+.card-wide.fade-in {
+    opacity: 1;
+    transform: translateY(0);
 }
 
-.btn {
-    display: inline-block;
-    padding: 12px 35px;
-    border: 2px solid var(--accent);
-    color:#ffffff; /* Explicitly white for dark background */
-    background: transparent;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 0.9rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    border-radius: 6px;
-    transition: 0.3s;
-}
-
-.btn:hover {
-    background: var(--accent);
-    color: white;
-    box-shadow: 0 0 15px rgba(0, 112, 243, 0.4);
-}
-
-.divider {
-    width: 1px;
-    height: 25px;
-    background-color: #475569;
-}
-
-/* --- FIXED SCROLL SNAP (SUBPAGES) --- */
+/* ==========================================================================
+   3. PROJECT SUB-PAGES (Portable Charger / PCB)
+   ========================================================================== */
 .scroll-wrapper {
     height: 100vh;
     width: 100%;
     overflow-y: scroll;
-    overflow-x: hidden; /* Prevents choppy side-scroll */
+    overflow-x: hidden;
     scroll-snap-type: y mandatory;
-    scroll-behavior: smooth;
-    background-color: var(--light-bg);
-    /* Hide scrollbar for Chrome/Safari */
     scrollbar-width: none; 
 }
 
-.scroll-wrapper::-webkit-scrollbar {
-    display: none; /* Hides scrollbar completely for ultra-smooth look */
-}
+.scroll-wrapper::-webkit-scrollbar { display: none; }
 
 .project-step {
-    height: 100vh;
+    min-height: 100vh;
     width: 100vw;
     scroll-snap-align: start;
-    scroll-snap-stop: always; /* Ensures the scroll "locks" into place */
+    scroll-snap-stop: always;
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     position: relative;
-    padding: 0;
-    background-color: var(--light-bg);
+    padding: 80px 60px;
+    background-color: #0b1221;
 }
 
-/* --- TOP LEFT CONTENT BOX --- */
-.content-box {
+/* Global Heading Style for Project Pages */
+h1 {
+    font-size: 2.8rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin-bottom: 24px;
+    color: var(--light-text);
+    display: inline-block;
+    border-bottom: 2px solid #1e293b;
+    padding-bottom: 8px;
+}
+
+p {
+    font-size: 1.15rem;
+    font-weight: 300;
+    line-height: 1.8;
+    color: var(--sub-text);
+}
+
+/* Back Button Component */
+.btn-back-home {
     position: absolute;
-    top: 50px;
-    left: 50px;
-    text-align: center;
-    border: 2px solid var(--accent);
+    top: 40px;
+    left: 40px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 20px;
+    background-color: transparent;
+    color: var(--sub-text);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border: 1px solid #1e293b;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.btn-back-home:hover {
+    background-color: var(--slate-grey);
+    color: white;
+    transform: translateX(-5px);
+}
+
+/* Vision Content Card Style */
+.content-box-button {
+    background: var(--slate-grey);
+    color: var(--light-text);
+    border: 1px solid #1e293b;
     padding: 40px;
     border-radius: 12px;
-    max-width: 500px;
-    width: 90%;
-    /* Lighter than the background to make it pop */
-    background: #334155; 
-    box-shadow: 0 10px 40px rgba(0,0,0,0.4);
-}
-
-.content-box h1 {
-    font-size: 2.2rem;
-    margin: 0 0 15px 0;
-    color: var(--light-text);
-}
-
-.content-box p {
-    color: var(--sub-text);
-    font-size: 1.1rem;
-    line-height: 1.6;
-    margin-bottom: 0;
-}
-
-/* --- FOOTER & CONTACT (PAGE 4) --- */
-.contact-footer {
-    margin-top: 30px;
-    padding-top: 25px;
-    border-top: 2px solid var(--accent);
-    width: 100%;
-    text-align: center;
-}
-
-.contact-info {
-    font-size: 1rem;
-    color: var(--light-text);
-    margin-bottom: 25px;
-    line-height: 1.5;
-}
-/* Ensures boxes don't cause horizontal scroll and smooths out the snap */
-.scroll-wrapper {
-    scrollbar-width: none; /* Hides scrollbar for Firefox */
-}
-
-.scroll-wrapper::-webkit-scrollbar {
-    display: none; /* Hides scrollbar for Chrome/Safari */
-}
-
-.project-step {
-    scroll-snap-stop: always; /* Forces the browser to stop at each page */
-}
-.vision-image img {
-    max-width: 95%;   /* Keeps it from hitting the edges */
-    height: auto;     /* Maintains the original aspect ratio */
-    display: block;
-    object-fit: contain; /* Ensures the whole image fits without cropping */
-}
-.button-img {
-    /* Layout & Sizing */
-    flex: 1;
-    height: 100vh;
-    display: block;
-    position: relative;
-    padding: 0;
-    border: none;
-    outline: none;
+    max-width: 600px;
     cursor: pointer;
+    transition: transform 0.3s ease;
+}
 
-    /* Background Image Logic - FIXED FOR RESIZING */
-    background-color: #0b1221;    
-    background-size: 90%;          /* Resizes to fit inside the box without cutting off */
-    background-position: center;   
-    background-repeat: no-repeat; 
-    
-    /* Ensuring the image stays inside our navy border frame */
-    background-origin: content-box;
-    background-clip: padding-box;
-    
-    /* Layering & Professionalism */
-    z-index: 1;
-    -webkit-font-smoothing: antialiased;
-    
-    /* Smooth Interaction */
+.content-box-button h1 {
+    border-bottom: 2px solid var(--accent-blue);
+}
+
+/* ==========================================================================
+   4. INTERACTIVE COMPONENTS (Split Screens & Lines)
+   ========================================================================== */
+.image-split {
+    display: flex;
+    align-items: center;
+    background-color: #0b1221;
+    gap: 15px;
+    padding: 0 10px;
+}
+
+.vertical-line {
+    width: 2px;
+    height: 80vh;
+    background-color: var(--accent-blue);
+    border-radius: 2px;
+}
+
+.button-img {
+    flex: 1;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    border: none;
+    cursor: pointer;
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: #0b1221;
+    background-size: cover;
+    background-position: center;
     transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease;
 }
 
-/* Hover Effect */
 .button-img:hover {
-    filter: brightness(1.1) contrast(1.05);
-    transform: scale(1.02); 
+    filter: brightness(1.1);
+    transform: scale(1.03);
     z-index: 10;
 }
-/* Container for the vertical stack */
+
+.img-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(11, 18, 33, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.button-img:hover .img-overlay { opacity: 1; }
+
 .nested-vertical-split {
     flex: 1;
     display: flex;
-    flex-direction: column; /* This stacks children vertically */
+    flex-direction: column;
     height: 100vh;
 }
 
-/* Ensure the buttons inside the vertical stack share the height */
 .nested-vertical-split .button-img {
-    flex: 1; 
-    height: 50%; /* Each takes half the vertical space */
+    flex: 1;
+    height: 50%;
+}
+
+/* ==========================================================================
+   5. LESSONS LEARNED CARDS (Grid/Flex)
+   ========================================================================== */
+.lessons-flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    margin: 40px auto;
+    max-width: 1200px;
     width: 100%;
 }
 
-/* Horizontal Divider between the two vertical images */
-.inner-line {
-    width: 100%;
-    height: 1px;
-    background-color: #1e293b;
-    border: none;
-    z-index: 5;
+.lesson-card {
+    background: #161e2d;
+    padding: 40px;
+    border-radius: 20px;
+    border: 1px solid #1e293b;
+    display: flex;
+    flex-direction: column;
+    min-height: 300px;
+    text-align: left;
+    transition: border-color 0.3s ease;
 }
 
-/* Responsive fix: On mobile, stack everything in a single column */
+.lesson-card:hover { border-color: var(--accent-blue); }
+
+.lesson-card h3 {
+    color: var(--light-text);
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 10px;
+    display: inline-block;
+}
+
+/* Grid Sizing Logic */
+.left-wide, .right-wide { flex: 1 1 calc(50% - 24px); }
+.full-width { flex: 1 1 100%; }
+
+/* ==========================================================================
+   6. RESPONSIVE QUERIES
+   ========================================================================== */
 @media (max-width: 768px) {
-    .nested-vertical-split {
-        height: auto; /* Allow height to expand on mobile */
-    }
-    .nested-vertical-split .button-img {
-        height: 40vh; /* Give each image a distinct height on mobile */
-    }
+    body::after { border-width: 8px; }
+    .projects-grid-full { grid-template-columns: 1fr; }
+    .image-split { flex-direction: column; }
+    .button-img { height: 50vh; }
+    .nested-vertical-split .button-img { height: 40vh; }
+    .lesson-card { flex: 1 1 100%; }
 }
-/* Keep your existing .button-img styles as they are */
