@@ -182,7 +182,7 @@
         <div class="line-long" style="margin: 20px auto; width: 30%; background-color: var(--accent-blue); opacity: 0.4;"></div>
         
         <p class="challenges-description">
-            The culmination of CAD modeling and PCB fabrication to create a portable charging device.
+            The CAD modeling and PCB fabrication used to create a portable charging device.
         </p>
     </div>
 
@@ -195,16 +195,16 @@
 </div>
         <section class="project-step challenges-section">
             <div class="centered-content-wrapper">
-                <h1 class="centered-title">Hardware Integration</h1>
+                <h1 class="centered-title">Soldering</h1>
                 <p class="challenges-description">
-                    This phase focused on the internal layout of the Li-ion cells and the custom BMS. Utilizing Fusion 360 lofting, 
-                    the internal chassis was designed to maximize airflow while maintaining a compact footprint.
+                    This phase focused on soldering the components together to create an assembled portable charger.
+                    Finishing this phase gave me valuable hands-on soldering experience while working with small components.
                 </p>
             </div>
             
             <div class="image-display-container">
-                <div class="button-img" style="height: 50vh; width: 90%; background-image: url('/images/charger-internals.jpg');">
-                    <div class="img-overlay">Internal Chassis & Cell Layout</div>
+                <div class="button-img" style="height: 50vh; width: 90%; background-image: url('/images/final-assembly.jpeg');">
+                    <div class="img-overlay">Finished Integration</div>
                 </div>
             </div>
         </section>
@@ -215,14 +215,15 @@
             <div class="centered-content-wrapper">
                 <h1 class="centered-title">The Final Assembly</h1>
                 <p class="challenges-description">
-                    The exterior housing was finished with a high-durability coating. Integrated ESP32 telemetry 
-                    provides real-time battery health via Bluetooth, bridging the gap between hardware and a custom mobile dashboard.
+                    Iteration one was unsuccessful due to faulty PCB design and poor management of breakout boards.
+                    Future iterations will integrate the components from the breakout board directly onto the PCB to save space, avoid soldering issues,
+                    and allow for proper CAD designDoing this will also allow me to add an ESP-32 microcontroller for smart monitoring of battery health and charge.
                 </p>
             </div>
             
             <div class="image-display-container">
                 <div class="button-img" style="height: 50vh; width: 90%; background-image: url('/images/charger-final-exterior.jpg');">
-                    <div class="img-overlay">Finished Device - Polished Aesthetic</div>
+                    <div class="img-overlay">Future Iterations</div>
                 </div>
             </div>
         </section>
