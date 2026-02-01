@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portable Charger - Final Build</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css"> 
+
+    <style>
+        /* Standalone overrides to fix Vercel rendering and mirror the PCB page */
+        :root {
+            --bg: #0b1221;
+            --accent-blue: #3b82f6;
+            --slate-grey: #161e2d;
+            --sub-text: #94a3b8;
+            --light-text: #f1f5f9;
+        }
+
+        body {
+            background-color: var(--bg) !important;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Fixed Border Frame */
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            border: 12px solid #1e293b; 
+            pointer-events: none; 
+            z-index: 9999;
+        }
+
+        .scroll-wrapper {
+            height: 100vh;
+            width: 100%;
+            overflow-y: scroll;
+            scroll-snap-type: y mandatory;
+            scrollbar-width: none; 
+            -ms-overflow-style: none;
+        }
+        .scroll-wrapper::-webkit-scrollbar { display: none; }
+
+        .project-step {
+            min-height: 100vh;
+            width: 100%;
+            scroll-snap-align: start;
+            scroll-snap-stop: always;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 80px 60px;
+            box-sizing: border-box;
+            background-color: var(--bg);
+            position: relative;
+        }
+
+        /* Reusable vertical stack for Title + Description + Image */
+        .challenges-section {
+            justify-content: flex-start !important;
+            padding-top: 100px !important;
+            text-align: center;
+        }
+
+        .centered-content-wrapper {
+            max-width: 800px;
+            width: 100%;
+            margin-bottom: 40px;
+            z-index: 2;
+        }
+
+        .centered-title {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            color: var(--light-text);
+            margin-bottom: 20px;
+            border-bottom: 2px solid #1e293b;
+            padding-bottom: 15px;
+            display: inline-block;
+        }
+
+        .challenges-description {
+            margin: 0 auto;
+            max-width: 650px;
+            line-height: 1.8;
+            color: var(--sub-text);
+            font-size: 1.1rem;
+        }
+
+        /* Responsive image adjustment */
+        .image-display-container {
+            width: 100%;
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .project-step { padding: 40px 20px; }
+            body::after { border-width: 8px; }
+            .centered-title { font-size: 2rem; }
+        }
+        /* Mirroring the button style for static text display */
+.static-content-box {
+    background: transparent; /* Removes slate-grey background */
+    border: none;            /* Removes the 1px border */
+    box-shadow: none;        /* Removes the shadow */
+    color: var(--light-text);
+    padding: 20px;           /* Reduced padding since there's no box to fill */
+    max-width: 800px;
+    width: 90%;
+    text-align: center;
+    z-index: 2;
+}
+
+/* Ensure the title inside doesn't have extra top margin */
+.static-content-box h1 {
+    margin-top: 0;
+    font-size: clamp(2.5rem, 6vw, 4.5rem); /* Slightly larger to fill the space */
+}
+
+/* Ensure the description is legible */
+.static-content-box .challenges-description {
+    margin-left: auto;
+    margin-right: auto;
+}
+/* Container to handle centering and spacing */
+.fade-line-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 40px 0; /* Adjust vertical spacing between content and line */
+    position: absolute;
+    bottom: 20px; /* Positions it at the bottom of the scroll-snap section */
+}
+
+/* The actual line with fading edges */
+.fade-line {
+    height: 1px;
+    width: 60%; /* Controls how much of the width it takes up */
+    max-width: 600px; /* Ensures it doesn't get too long on ultra-wide screens */
+    
+    /* Linear gradient: Transparent -> Accent Blue -> Transparent */
+    background: linear-gradient(
+        90deg, 
+        transparent 0%, 
+        var(--accent-blue) 50%, 
+        transparent 100%
+    );
+    
+    opacity: 0.6; /* Subtle appearance */
+}
+
+/* Mobile adjustment */
+@media (max-width: 768px) {
+    .fade-line {
+        width: 80%;
+    }
+}
+    </style>
+</head>
+<body>
+
+    <div class="scroll-wrapper">
+        
+        <section class="project-step">
+    <a href="/" class="btn-back-home">← Home</a>
+    
+    <div class="static-content-box">
+        <h1 class="centered-title" style="border-bottom-color: var(--accent-blue);">Final Build</h1>
+        
+        <p class="challenges-description" style="color: var(--accent-blue); font-weight: 600; letter-spacing: 2px; text-transform: uppercase; font-size: 0.9rem;">
+            Portable Power Reimagined
+        </p>
+        
+        <div class="line-long" style="margin: 20px auto; width: 30%; background-color: var(--accent-blue); opacity: 0.4;"></div>
+        
+        <p class="challenges-description">
+            The culmination of CAD modeling, PCB fabrication, and structural engineering into a single high-performance device.
+        </p>
+    </div>
+
+    <div class="fade-line-container">
+        <div class="fade-line"></div>
+    </div>
+</section>
+<div class="fade-line-container">
+    <div class="fade-line"></div>
+</div>
+        <section class="project-step challenges-section">
+            <div class="centered-content-wrapper">
+                <h1 class="centered-title">Hardware Integration</h1>
+                <p class="challenges-description">
+                    This phase focused on the internal layout of the Li-ion cells and the custom BMS. Utilizing Fusion 360 lofting, 
+                    the internal chassis was designed to maximize airflow while maintaining a compact footprint.
+                </p>
+            </div>
+            
+            <div class="image-display-container">
+                <div class="button-img" style="height: 50vh; width: 90%; background-image: url('/images/charger-internals.jpg');">
+                    <div class="img-overlay">Internal Chassis & Cell Layout</div>
+                </div>
+            </div>
+        </section>
+<div class="fade-line-container">
+    <div class="fade-line"></div>
+</div>
+        <section class="project-step challenges-section">
+            <div class="centered-content-wrapper">
+                <h1 class="centered-title">The Final Assembly</h1>
+                <p class="challenges-description">
+                    The exterior housing was finished with a high-durability coating. Integrated ESP32 telemetry 
+                    provides real-time battery health via Bluetooth, bridging the gap between hardware and a custom mobile dashboard.
+                </p>
+            </div>
+            
+            <div class="image-display-container">
+                <div class="button-img" style="height: 50vh; width: 90%; background-image: url('/images/charger-final-exterior.jpg');">
+                    <div class="img-overlay">Finished Device - Polished Aesthetic</div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+</body>
+</html>

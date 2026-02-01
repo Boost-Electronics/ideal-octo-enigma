@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portable Charger PCB Project</title>
+    <title>Portable Charger - PCB Design</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/style.css">
 
     <style>
-        /* Standalone overrides to fix Vercel rendering for this page specifically */
         :root {
             --bg: #0b1221;
             --accent-blue: #3b82f6;
@@ -25,7 +24,6 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Re-asserting the fixed border in case the global link fails */
         body::after {
             content: "";
             position: fixed;
@@ -35,7 +33,6 @@
             z-index: 9999;
         }
 
-        /* Ensuring the scroll wrapper works with Vercel's flex handling */
         .scroll-wrapper {
             height: 100vh;
             width: 100%;
@@ -58,157 +55,177 @@
             padding: 80px 60px;
             box-sizing: border-box;
             background-color: var(--bg);
+            position: relative;
         }
 
-        /* Fix for potential heading overlap */
+        .challenges-section {
+            justify-content: flex-start !important;
+            padding-top: 100px !important;
+            text-align: center;
+        }
+
+        .centered-content-wrapper {
+            max-width: 800px;
+            width: 100%;
+            margin-bottom: 40px;
+            z-index: 2;
+        }
+
         .centered-title {
             font-size: clamp(2rem, 5vw, 3.5rem);
             font-weight: 700;
             color: var(--light-text);
-            margin-bottom: 30px;
-            text-align: center;
+            margin-bottom: 20px;
             border-bottom: 2px solid #1e293b;
             padding-bottom: 15px;
+            display: inline-block;
         }
 
-        /* Ensure images and splits don't break on mobile */
+        .challenges-description {
+            margin: 0 auto;
+            max-width: 650px;
+            line-height: 1.8;
+            color: var(--sub-text);
+            font-size: 1.1rem;
+        }
+
+        .static-content-box {
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            color: var(--light-text);
+            padding: 20px;
+            max-width: 800px;
+            width: 90%;
+            text-align: center;
+            z-index: 2;
+        }
+
+        .static-content-box h1 {
+            margin-top: 0;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+        }
+
+        .fade-line-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            padding: 40px 0;
+            position: absolute;
+            bottom: 20px;
+        }
+
+        .fade-line {
+            height: 1px;
+            width: 60%;
+            max-width: 600px;
+            background: linear-gradient(90deg, transparent 0%, var(--accent-blue) 50%, transparent 100%);
+            opacity: 0.6;
+        }
+
         @media (max-width: 768px) {
             .project-step { padding: 40px 20px; }
+            body::after { border-width: 8px; }
+            .centered-title { font-size: 2rem; }
             .image-split { flex-direction: column; gap: 20px; }
-            .vertical-line { display: none; }
         }
-        /* Force the section to be a vertical stack */
-    .challenges-section {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start; /* Start from top to allow room for images below */
-        align-items: center;
-        padding-top: 100px !important; /* Push down from the 12px border */
-        text-align: center;
-    }
-
-    /* Keep the text block contained and centered */
-    .centered-content-wrapper {
-        max-width: 800px;
-        width: 100%;
-        margin-bottom: 50px; /* Space between text and images */
-        z-index: 2;
-    }
-
-    .challenges-description {
-        margin: 0 auto;
-        max-width: 600px;
-        line-height: 1.6;
-    }
-
-    /* Ensure images don't float up and overlap text */
-    .image-display-container {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        gap: 20px;
-        flex-wrap: wrap; /* Helps on smaller Vercel viewports */
-    }
-
-    /* Force the title to stay centered */
-    .centered-title {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-    }
     </style>
-
 </head>
 <body>
-   
-<section class="project-step challenges-section">
-    <a href="javascript:history.back()" class="btn-back-home">
-        <span class="arrow">←</span> Back
-    </a>
 
-    <div class="centered-content-wrapper">
-        <h1 class="centered-title">PCB Design</h1>
-        <p class="challenges-description">
-            To create the portable charger, I decided to integrate a TP4056 breakout board and 3v-5v Buck Boost Converter using a custom-designed Battery holder PCB to ensure protection against overcharging and a smooth lithium ion charging experience. Below are renders of the AutoDesk PCB models and physical PCB models.
-        </p>
-    </div>
-
-    <div class="challenges-image-grid">
-        </div>
-</section>
-
-    <div class="divider-container"><hr class="line"></div>
-
-    <section class="image-split">
-        <button class="button-img" style="background-image: url('/images/bat-render.png'); background-size: 75%;" ></button>
-        <button class="button-img" style="background-image: url('/images/physical-pcb.jpeg'); background-size: contain;" ></button>
-    </section>
-
-    <div class="divider-container"><hr class="line"></div>
-
-    <section class="project-step challenges-section">
-    <div class="centered-content-wrapper">
-        <h1 class="centered-title">Challenges Faced</h1>
-        <p class="challenges-description">
-            During the creation of the Battery Holder PCB I ran into several problems 
-            including IC design in Eagle electronics and manufacturing issues with JLCPCB.
-        </p>
-    </div>
-
-    <div class="image-display-container">
-        </div>
-</section>
-
-    <section class="image-split">
-    <div class="nested-vertical-split">
-        <button class="button-img" style="background-image: url('/images/jlc-issue.png');">
-            <div class="img-overlay">
-                <span>JLC Manufacturing Issue: Component Sizing Error and Hole Misplacement</span>
-            </div>
-        </button>
+    <div class="scroll-wrapper">
         
-        <hr class="inner-line">
-        
-        <button class="button-img" style="background-image: url('/images/failed-ic.png');">
-            <div class="img-overlay">
-                <span>Failed IC Design: Incorrect Pinout and Symbol</span>
-            </div>
-        </button>
-    </div>
-    </div>
-    <div class="vertical-line"></div>
-    <button class="button-img" style="background-image: url('/images/failed-board.png');">
-        <div class="img-overlay">
-            <span>3D CAD Prototype: Incorrectly Assembled 3D Model of Portable Charger</span>
-        </div>
-    </button>
-</section>
-<div class="divider-wrap">
-    <div class="horizontal-line"></div>
-</div>
-
-<section class="project-step challenges-section">
-    <div class="centered-content-wrapper">
-        <div class="centered-content-wrapper">
-            <h1 class="centered-title">Lessons Learned</h1>
-        </div>
-
-    <div class="lessons-flex-container">
-        <div class="lesson-card left-wide">
-                <h3>Design Iteration</h3>
-                <p>Learned that digital simulations (Eagle/Fusion) rarely account for physical manufacturing tolerances. Iterating early saved weeks of debugging.</p>
-        </div>
+        <section class="project-step">
+            <a href="/" class="btn-back-home">← Home</a>
             
-    <div class="lesson-card right-wide">
-                <h3>Supply Chain</h3>
-                <p>Navigating JLCPCB's manufacturing capabilities taught me to design for "DFM" (Design for Manufacturability) rather than just theoretical perfection.</p>
-        </div>
+            <div class="static-content-box">
+                <h1 class="centered-title" style="border-bottom-color: var(--accent-blue);">PCB Design</h1>
+                
+                <p class="challenges-description" style="color: var(--accent-blue); font-weight: 600; letter-spacing: 2px; text-transform: uppercase; font-size: 0.9rem;">
+                    Circuitry & Power Protection
+                </p>
+                
+                <div class="line-long" style="margin: 20px auto; width: 30%; background-color: var(--accent-blue); opacity: 0.4;"></div>
+                
+                <p class="challenges-description">
+                    Integrating a TP4056 breakout board and a 3V-5V Buck Boost Converter onto a custom battery holder PCB for seamless charging.
+                </p>
+            </div>
 
-    <div class="lesson-card full-width">
-                <h3>Thermal Management</h3>
-                <p>Discovered the importance of copper pours to dissipate heat from the Buck-Boost converter under high iPhone charging loads.</p>
-        </div>
+            <div class="fade-line-container">
+                <div class="fade-line"></div>
+            </div>
+        </section>
+
+        <section class="project-step challenges-section">
+            <div class="centered-content-wrapper">
+                <h1 class="centered-title">Renders & Fabrication</h1>
+                <p class="challenges-description">
+                    Below are the high-fidelity renders from Autodesk Eagle alongside the physical prototype, showcasing the transition from schematic to hardware.
+                </p>
+            </div>
+            
+            <section class="image-split" style="width: 90%; flex: 1;">
+                <button class="button-img" style="background-image: url('/images/bat-render.png'); background-size: 75%;"></button>
+                <div class="vertical-line"></div>
+                <button class="button-img" style="background-image: url('/images/physical-pcb.jpeg'); background-size: contain;"></button>
+            </section>
+
+            <div class="fade-line-container">
+                <div class="fade-line"></div>
+            </div>
+        </section>
+
+        <section class="project-step challenges-section">
+            <div class="centered-content-wrapper">
+                <h1 class="centered-title">Challenges Faced</h1>
+                <p class="challenges-description">
+                    Technical hurdles included IC design errors in Eagle and navigating manufacturing constraints with JLCPCB.
+                </p>
+            </div>
+
+            <section class="image-split" style="width: 90%; flex: 1;">
+                <div class="nested-vertical-split">
+                    <button class="button-img" style="background-image: url('/images/jlc-issue.png');">
+                        <div class="img-overlay"><span>JLC Manufacturing Issue: Sizing Error</span></div>
+                    </button>
+                    <button class="button-img" style="background-image: url('/images/failed-ic.png');">
+                        <div class="img-overlay"><span>Failed IC Design: Incorrect Pinout</span></div>
+                    </button>
+                </div>
+                <div class="vertical-line"></div>
+                <button class="button-img" style="background-image: url('/images/failed-board.png');">
+                    <div class="img-overlay"><span>Incorrectly Assembled Prototype</span></div>
+                </button>
+            </section>
+
+            <div class="fade-line-container">
+                <div class="fade-line"></div>
+            </div>
+        </section>
+
+        <section class="project-step challenges-section">
+            <div class="centered-content-wrapper">
+                <h1 class="centered-title">Lessons Learned</h1>
+            </div>
+
+            <div class="lessons-flex-container">
+                <div class="lesson-card left-wide">
+                    <h3>Design Iteration</h3>
+                    <p>Learned that digital simulations rarely account for physical tolerances. Iterating early saved weeks of debugging.</p>
+                </div>
+                <div class="lesson-card right-wide">
+                    <h3>Supply Chain</h3>
+                    <p>Navigating JLCPCB's capabilities taught me to design for "DFM" (Design for Manufacturability) rather than theoretical perfection.</p>
+                </div>
+                <div class="lesson-card full-width">
+                    <h3>Thermal Management</h3>
+                    <p>Discovered the importance of copper pours to dissipate heat from the Buck-Boost converter under high loads.</p>
+                </div>
+            </div>
+        </section>
+
     </div>
-</section>
+
 </body>
 </html>
