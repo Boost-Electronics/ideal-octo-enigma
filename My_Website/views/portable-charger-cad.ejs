@@ -137,6 +137,40 @@
             .centered-title { font-size: 2rem; }
             .fade-line { width: 80%; }
         }
+        /* Specific styling for physical iPhone photos */
+/* Container for the zoom effect */
+.iphone-photo-display {
+    height: 60vh;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    background-size: contain; /* Start fully visible */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: rgba(15, 23, 42, 0.3); 
+    border-radius: 15px;
+    position: relative;
+    overflow: hidden; /* Clips the image so it doesn't spill out when zooming */
+    
+    /* Smooth transition for the zoom effect */
+    transition: background-size 0.4s cubic-bezier(0.25, 1, 0.5, 1), transform 0.3s ease;
+}
+
+/* The Zoom Effect */
+.iphone-photo-display:hover {
+    /* Switch from 'contain' to a larger percentage to create the zoom look */
+    /* Adjust 110% to 150% depending on how deep you want the zoom to be */
+    background-size: 115%; 
+    cursor: zoom-in;
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+}
+
+/* Ensure the text overlay fades out slightly so it doesn't block the zoom view */
+.iphone-photo-display:hover .img-overlay {
+    opacity: 0.3;
+    transition: opacity 0.3s ease;
+}
     </style>
 </head>
 <body>
@@ -186,20 +220,21 @@
         </section>
 
         <section class="project-step challenges-section">
-            <div class="centered-content-wrapper">
-                <h1 class="centered-title">Physical Container</h1>
-                <p class="challenges-description">
-                    The physical container was 3D printed using an ABS filament with the P1S printer.
-                    Future iterations will focus on developing the PCB to the CAD model to ensure proper fitment.
-                </p>
-            </div>
-            
-            <div class="image-display-container">
-                <div class="button-img" style="height: 50vh; width: 90%; background-image: url('/images/physical-model-jpeg');">
-                    <div class="img-overlay">Physical Container Preview</div>
-                </div>
-            </div>
-        </section>
+    <div class="centered-content-wrapper">
+        <h1 class="centered-title">Physical Container</h1>
+        <p class="challenges-description">
+            The physical container was 3D printed using an ABS filament.
+
+            <strong>Hover over the image below to inspect the print.</strong>
+        </p>
+    </div>
+    
+    <div class="image-display-container">
+        <div class="iphone-photo-display" style="background-image: url('/images/physical-model.jpeg');">
+            <div class="img-overlay">Physical Container</div>
+        </div>
+    </div>
+</section>
 
     </div>
 

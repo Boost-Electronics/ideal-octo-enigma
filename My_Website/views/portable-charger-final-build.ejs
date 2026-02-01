@@ -163,6 +163,39 @@
         width: 80%;
     }
 }
+/* Container for the zoom effect */
+.iphone-photo-display {
+    height: 60vh;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    background-size: contain; /* Start fully visible */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: rgba(15, 23, 42, 0.3); 
+    border-radius: 15px;
+    position: relative;
+    overflow: hidden; /* Clips the image so it doesn't spill out when zooming */
+    
+    /* Smooth transition for the zoom effect */
+    transition: background-size 0.4s cubic-bezier(0.25, 1, 0.5, 1), transform 0.3s ease;
+}
+
+/* The Zoom Effect */
+.iphone-photo-display:hover {
+    /* Switch from 'contain' to a larger percentage to create the zoom look */
+    /* Adjust 110% to 150% depending on how deep you want the zoom to be */
+    background-size: 115%; 
+    cursor: zoom-in;
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+}
+
+/* Ensure the text overlay fades out slightly so it doesn't block the zoom view */
+.iphone-photo-display:hover .img-overlay {
+    opacity: 0.3;
+    transition: opacity 0.3s ease;
+}
     </style>
 </head>
 <body>
@@ -194,20 +227,26 @@
     <div class="fade-line"></div>
 </div>
         <section class="project-step challenges-section">
-            <div class="centered-content-wrapper">
-                <h1 class="centered-title">Soldering</h1>
-                <p class="challenges-description">
-                    This phase focused on soldering the components together to create an assembled portable charger.
-                    Finishing this phase gave me valuable hands-on soldering experience while working with small components.
-                </p>
-            </div>
-            
-            <div class="image-display-container">
-                <div class="button-img" style="height: 50vh; width: 90%; background-image: url('/images/final-assembly.jpeg');">
-                    <div class="img-overlay">Finished Integration</div>
-                </div>
-            </div>
-        </section>
+    <div class="centered-content-wrapper">
+        <h1 class="centered-title">Soldering</h1>
+        <p class="challenges-description">
+            This phase focused on soldering the components together to create an assembled portable charger. 
+            Finishing this phase gave me valuable hands-on soldering experience while working with small components.
+
+            <strong>Hover over the image to inspect the solder joints.</strong>
+        </p>
+    </div>
+    
+    <div class="image-display-container">
+        <div class="iphone-photo-display" style="background-image: url('/images/final-assembly.jpeg');">
+            <div class="img-overlay">Finished Integration - Hand-Soldered Assembly</div>
+        </div>
+    </div>
+
+    <div class="fade-line-container">
+        <div class="fade-line"></div>
+    </div>
+</section>
 <div class="fade-line-container">
     <div class="fade-line"></div>
 </div>
@@ -217,7 +256,7 @@
                 <p class="challenges-description">
                     Iteration one was unsuccessful due to faulty PCB design and poor management of breakout boards.
                     Future iterations will integrate the components from the breakout board directly onto the PCB to save space, avoid soldering issues,
-                    and allow for proper CAD designDoing this will also allow me to add an ESP-32 microcontroller for smart monitoring of battery health and charge.
+                    and allow for proper CAD design. Doing this will also allow me to add an ESP-32 microcontroller for smart monitoring of battery health and charge.
                 </p>
             </div>
             
